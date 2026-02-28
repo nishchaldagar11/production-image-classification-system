@@ -1,76 +1,47 @@
-# Production-Ready Image Classification System using CNN, PyTorch, FastAPI, and ONNX
+# 🖼️ Production-Ready Image Classification System
 
-## Overview
+> CNN-based image classifier built with PyTorch, served via FastAPI, and exported to ONNX for optimized deployment.
 
-This project implements a production-ready image classification system built with PyTorch and deployed using FastAPI. The system allows users to upload an image via a REST API and receive real-time predictions. The model is trained on the CIFAR-10 dataset and exported to ONNX format for optimized inference and deployment readiness.
-
-This project demonstrates end-to-end machine learning pipeline development, including model training, inference API creation, and deployment preparation.
-
----
-
-## Features
-
-* CNN-based image classification using PyTorch
-* Real-time prediction using FastAPI REST API
-* ONNX model export for optimized inference
-* Modular and production-ready code structure
-* Automated dataset download and training pipeline
-* REST API testing using Swagger UI
-* Docker-ready deployment support
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=flat-square&logo=python)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0-EE4C2C?style=flat-square&logo=pytorch)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=flat-square&logo=fastapi)
+![ONNX](https://img.shields.io/badge/ONNX-Export-gray?style=flat-square&logo=onnx)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker)
+![License](https://img.shields.io/badge/License-Educational-green?style=flat-square)
 
 ---
 
-## Tech Stack
+## 📌 Overview
 
-**Machine Learning**
-
-* PyTorch
-* Torchvision
-* NumPy
-
-**Backend / API**
-
-* FastAPI
-* Uvicorn
-
-**Image Processing**
-
-* Pillow
-* OpenCV
-
-**Deployment / Optimization**
-
-* ONNX
-* Docker
-
-**Programming Language**
-
-* Python 3.10+
+This project implements an end-to-end **production-ready image classification system** trained on the CIFAR-10 dataset. Users can upload an image via a REST API and receive real-time predictions. The model is exported to **ONNX format** for optimized inference and deployment readiness.
 
 ---
 
-## Dataset
+## ✨ Features
 
-Dataset used: **CIFAR-10**
-
-Classes:
-
-* Airplane
-* Automobile
-* Bird
-* Cat
-* Deer
-* Dog
-* Frog
-* Horse
-* Ship
-* Truck
-
-Dataset is automatically downloaded using Torchvision.
+- ✅ CNN-based image classification using **PyTorch**
+- ✅ Real-time prediction via **FastAPI** REST API
+- ✅ **ONNX** model export for optimized inference
+- ✅ Modular and production-ready code structure
+- ✅ Automated dataset download and training pipeline
+- ✅ REST API testing using **Swagger UI**
+- ✅ **Docker-ready** deployment support
 
 ---
 
-## Project Structure
+## 🛠️ Tech Stack
+
+| Category | Tools |
+|---|---|
+| **Machine Learning** | PyTorch, Torchvision, NumPy |
+| **Backend / API** | FastAPI, Uvicorn |
+| **Image Processing** | Pillow, OpenCV |
+| **Deployment** | ONNX, Docker |
+| **Language** | Python 3.10+ |
+
+---
+
+## 📂 Project Structure
 
 ```
 image-classification-system/
@@ -82,203 +53,168 @@ image-classification-system/
 │   ├── model.py             # CNN architecture
 │   ├── train.py             # Model training script
 │   ├── predict.py           # Prediction logic
-│   └── export_onnx.py      # ONNX export script
+│   └── export_onnx.py       # ONNX export script
 │
 ├── models/
-│   └── cnn_model.pth       # Trained PyTorch model
+│   └── cnn_model.pth        # Trained PyTorch model
 │
 ├── onnx/
-│   └── model.onnx          # Exported ONNX model
+│   └── model.onnx           # Exported ONNX model
 │
-├── data/                   # Dataset folder
+├── data/                    # Dataset folder (auto-downloaded)
 │
-├── requirements.txt       # Dependencies
-├── Dockerfile             # Docker deployment config
+├── requirements.txt
+├── Dockerfile
 └── README.md
 ```
 
 ---
 
-## Model Architecture
+## 🧠 Model Architecture
 
-The CNN model consists of:
-
-* 3 Convolutional layers
-* ReLU activation
-* MaxPooling layers
-* Fully connected layers
-* Dropout regularization
-
-Architecture flow:
+The CNN consists of **3 convolutional blocks** followed by fully connected layers with dropout regularization.
 
 ```
-Input Image → Conv → ReLU → Pool → Conv → ReLU → Pool → Conv → ReLU → Pool → FC → Output
+Input Image (32x32x3)
+       │
+  ┌────▼────┐
+  │  Conv2D  │ → ReLU → MaxPool
+  └────┬────┘
+       │
+  ┌────▼────┐
+  │  Conv2D  │ → ReLU → MaxPool
+  └────┬────┘
+       │
+  ┌────▼────┐
+  │  Conv2D  │ → ReLU → MaxPool
+  └────┬────┘
+       │
+  ┌────▼────┐
+  │    FC    │ → Dropout → Output (10 classes)
+  └─────────┘
 ```
 
 ---
 
-## Installation
+## 🗂️ Dataset — CIFAR-10
 
-### Step 1: Clone repository
+Auto-downloaded via Torchvision. Contains **60,000 images** across 10 classes:
 
-```
+`✈️ Airplane` · `🚗 Automobile` · `🐦 Bird` · `🐱 Cat` · `🦌 Deer`  
+`🐶 Dog` · `🐸 Frog` · `🐴 Horse` · `🚢 Ship` · `🚚 Truck`
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/YOUR_USERNAME/production-image-classification-system.git
 cd production-image-classification-system
 ```
 
----
+### 2. Create a Virtual Environment
 
-### Step 2: Create virtual environment
-
-```
+```bash
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS/Linux
 ```
 
----
+### 3. Install Dependencies
 
-### Step 3: Install dependencies
-
-```
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-## Training the Model
+## 🏋️ Train the Model
 
-Run:
-
-```
+```bash
 cd src
 python train.py
 ```
 
-Output:
-
+Model will be saved to:
 ```
-Model saved at models/cnn_model.pth
+models/cnn_model.pth
 ```
 
 ---
 
-## Run the API Server
+## 🌐 Run the API Server
 
-```
+```bash
 cd api
 python -m uvicorn main:app --reload
 ```
 
-Server will start at:
-
-```
-http://127.0.0.1:8000
-```
-
-Swagger UI available at:
-
-```
-http://127.0.0.1:8000/docs
-```
+| URL | Purpose |
+|---|---|
+| `http://127.0.0.1:8000` | Base server |
+| `http://127.0.0.1:8000/docs` | Swagger UI |
 
 ---
 
-## API Usage
+## 📡 API Usage
 
-### Endpoint
+### `POST /predict`
 
-```
-POST /predict
-```
+Upload any `.jpg` or `.png` image to get a prediction.
 
-### Input
-
-* Image file (.jpg, .png)
-
-### Output Example
-
-```
+**Example Response:**
+```json
 {
   "prediction": "cat"
 }
 ```
 
+You can test this directly through the **Swagger UI** at `/docs`.
+
 ---
 
-## ONNX Export
+## 📦 Export to ONNX
 
-To export model to ONNX format:
-
-```
+```bash
 cd src
 python export_onnx.py
 ```
 
-Output:
-
+Exported model saved at:
 ```
 onnx/model.onnx
 ```
 
 ---
 
-## Docker Deployment (Optional)
+## 🐳 Docker Deployment
 
-Build Docker image:
-
-```
+```bash
+# Build the image
 docker build -t image-classifier .
-```
 
-Run container:
-
-```
+# Run the container
 docker run -p 8000:8000 image-classifier
 ```
 
 ---
 
-## Results
+## 📊 Results
 
-* Successfully trained CNN model on CIFAR-10 dataset
-* Real-time image classification using REST API
-* Production-ready modular architecture
-* ONNX model exported for optimized deployment
-
----
-
-## Skills Demonstrated
-
-* Deep Learning
-* Computer Vision
-* CNN Architecture
-* Model Deployment
-* FastAPI
-* REST API Development
-* PyTorch
-* ONNX
-* Docker
-* Backend Integration
+- ✔️ CNN model successfully trained on CIFAR-10
+- ✔️ Real-time image classification via REST API
+- ✔️ ONNX model exported for optimized deployment
+- ✔️ Modular, production-ready architecture
 
 ---
 
-## Future Improvements
+## 🔮 Future Improvements
 
-* Use ResNet50 for higher accuracy
-* Deploy on cloud (AWS / Render / Railway)
-* Add frontend UI
-* Add batch prediction support
-
----
-
-## Author
-
-Nishchal Dagar
-B.Tech Computer Science (Data Science)
-Machine Learning & Data Science Enthusiast
+- [ ] Upgrade to **ResNet50** for higher accuracy
+- [ ] Deploy on cloud (**AWS / Render / Railway**)
+- [ ] Add a **frontend UI** for easy image uploads
+- [ ] Support **batch prediction**
 
 ---
-
-## License
-
-This project is for educational and portfolio purposes.
